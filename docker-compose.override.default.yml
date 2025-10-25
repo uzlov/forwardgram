@@ -1,0 +1,22 @@
+services:
+  app:
+    # Prevent automatically stop. Can be used for some tests!
+    command: tail -f /dev/null
+
+  mariadb:
+    container_name: ${COMPOSE_PROJECT_NAME}_mariadb
+    image: mariadb:11.5.2
+    environment:
+      MARIADB_ROOT_PASSWORD: root123
+    restart: always
+    networks:
+      - front
+
+  adminer:
+    container_name: ${COMPOSE_PROJECT_NAME}_adminer
+    image: adminer
+    restart: always
+    networks:
+      - front
+    ports:
+      - 8889:8080

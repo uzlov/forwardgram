@@ -1,0 +1,13 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+sessions
+app/*.session
+app/*.session-journal
+
+docker-compose.override.yml
+.env
+.idea
+.vscode

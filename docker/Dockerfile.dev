@@ -1,0 +1,23 @@
+FROM python:3.10.7-alpine
+ARG APP_PATH=/opt/app
+
+# Install build dependencies and compile MariaDB Connector/C 3.3.1+
+RUN apk --no-cache add git gcc musl-dev cmake make curl-dev openssl-dev && \
+    cd /tmp && \
+    wget https://downloads.mariadb.com/Connectors/c/connector-c-3.3.10/mariadb-connector-c-3.3.10-src.tar.gz && \
+    tar -xzf mariadb-connector-c-3.3.10-src.tar.gz && \
+    cd mariadb-connector-c-3.3.10-src && \
+    cmake . -DCMAKE_INSTALL_PREFIX=/usr -DWITH_EXTERNAL_ZLIB=ON && \
+    make && \
+    make install && \
+    cd / && \
+    rm -rf /tmp/mariadb-connector-c-3.3.10-src*
+
+# Set library path for runtime
+ENV LD_LIBRARY_PATH=/usr/lib:/usr/lib/mariadb
+
+COPY app/requirements.txt $APP_PATH/requirements.txt
+WORKDIR $APP_PATH
+RUN pip install -r requirements.txt
+
+CMD ["python", "main.py", "config.global.dev.yml", "tags.prod.yml"]

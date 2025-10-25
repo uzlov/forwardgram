@@ -1,0 +1,64 @@
+# The redirector channel ID.
+redirector_channel_id: '1111111111'
+
+# The default settings for channel.
+channel_settings_default:
+  close_queue_interval: 20
+  links: false
+  users: false
+  emails: false
+  hash_tags: false
+  english_part_of_message: true
+  media_without_message: true
+  media_doc_image_without_message: true
+  media_doc_video_without_message: true
+  clean_media_message: false
+  progressive_values:
+    - limit: 800
+      value: 20
+    - limit: 1100
+      value: 30
+  remove_keywords:
+    - "(.+){0,1}(телефон|viber|telegram)(.+){0,1}"
+  allowed_keywords:
+    - "([0-9]+)\\s*(грн|uah)"
+  disallowed_keywords:
+    - "(spam|advertising)"
+  prices:
+    - pattern: "([0-9]+)\\s*(грн|uah)"
+      value: 100
+
+# The channel names that you'd like to forward messages from.
+# The user running the client must have these channels in their dialogs.
+input_channels:
+  '2222222222':
+    brand_id: 001
+    close_queue_interval: 10
+    remove_keywords:
+      - "(Ціна гурт)"
+    tags:
+      - 'recommend'
+      - 'cash_on_delivery'
+  '3333333333':
+    close_queue_interval: 20
+    allowed_keywords:
+      - "([0-9]+)\\s*(грн|uah)"
+    progressive_values:
+      - limit: 800
+        value: 20
+      - limit: 1000
+        value: 30
+    prices:
+      - pattern: "([0-9]+)\\s*(грн|uah)"
+        value: 80
+    prices_per_channel:
+      '4444444444':
+        - pattern: "([0-9]+)\\s*(грн|uah)"
+          value: 10
+      '5555555555':
+        - pattern: "([0-9]+)\\s*(грн|uah)"
+          value: 20
+
+# The output channel ID that the messages will be forwarded to.
+# The user running the client should be the channel admin, and have the channel in their dialogs.
+output_channel_id: '6666666666'

@@ -1,0 +1,11 @@
+api_id: 1234567 # This has to be an integer.
+api_hash: 'api_hash' # Long 32 characters hash identifier.
+env: 'dev'
+session_name: 'forwardgram' # Session name.
+logging_level: 'DEBUG'
+
+db_config:
+  user: 'root'
+  password: 'root123'
+  host: 'mariadb'
+  database: 'forwardgram'

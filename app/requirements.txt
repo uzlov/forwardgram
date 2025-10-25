@@ -1,0 +1,20 @@
+# Python 3.10.7 compatible dependencies
+
+# Telegram client library
+git+https://github.com/LonamiWebs/Telethon@a9442ef1bea7c63b9cd06192fcb08ece07f81881#egg=telethon
+
+# Configuration handling
+pyyaml>=6.0,<7.0
+
+# Async timers for message scheduling
+aio_timers==0.0.1
+
+# Job scheduling (fixed version for stability)
+apscheduler==3.10.4
+
+# Timezone handling
+pytz>=2022.1
+
+# Database connectivity
+mysql-connector-python>=8.0.32
+mariadb>=1.0.11,<2.0
